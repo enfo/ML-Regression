@@ -11,6 +11,10 @@ def calcMSError(calculatedResults, expectedResults):
     return error
 
 
+def test_answer():
+    assert calcMSError(3, 3) == 0
+
+
 def gradientDesecent(Data, Y, Y_predicted, learningRate):
     n = len(Data)
     dimensions = Data.shape[1]
