@@ -1,5 +1,7 @@
 import numpy as np
-from sklearn import datasets
+import sklearn
+
+# from sklearn import datasets
 
 
 def calcMSError(calculatedResults, expectedResults):
@@ -75,7 +77,7 @@ def scaleData(X):
 
 
 def getLinearRegressionDemoData(nSamples, featureDimensions, noise):
-    X, Y, coef = datasets.make_regression(
+    X, Y, coef = sklearn.datasets.make_regression(
         n_samples=nSamples,
         n_features=featureDimensions,
         n_informative=featureDimensions,
@@ -89,7 +91,7 @@ def getLinearRegressionDemoData(nSamples, featureDimensions, noise):
 
 def getLogisticRegressionDemoData(nSamples, featureDimensions):
 
-    X, Y = datasets.make_classification(
+    X, Y = sklearn.datasets.make_classification(
         n_samples=nSamples,
         n_features=featureDimensions,
         n_informative=featureDimensions,
