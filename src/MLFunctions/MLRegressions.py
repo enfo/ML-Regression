@@ -1,7 +1,5 @@
 import numpy as np
-import sklearn
-
-# from sklearn import datasets
+from sklearn import datasets
 
 
 def calcMSError(calculatedResults, expectedResults):
@@ -11,10 +9,6 @@ def calcMSError(calculatedResults, expectedResults):
 
     error = error / len(calculatedResults)
     return error
-
-
-def test_answer():
-    assert calcMSError(3, 3) == 0
 
 
 def gradientDesecent(Data, Y, Y_predicted, learningRate):
@@ -77,7 +71,7 @@ def scaleData(X):
 
 
 def getLinearRegressionDemoData(nSamples, featureDimensions, noise):
-    X, Y, coef = sklearn.datasets.make_regression(
+    X, Y, coef = datasets.make_regression(
         n_samples=nSamples,
         n_features=featureDimensions,
         n_informative=featureDimensions,
@@ -91,7 +85,7 @@ def getLinearRegressionDemoData(nSamples, featureDimensions, noise):
 
 def getLogisticRegressionDemoData(nSamples, featureDimensions):
 
-    X, Y = sklearn.datasets.make_classification(
+    X, Y = datasets.make_classification(
         n_samples=nSamples,
         n_features=featureDimensions,
         n_informative=featureDimensions,
