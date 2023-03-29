@@ -37,7 +37,9 @@ def gradientDesecent(Data, Y, Y_predicted, learningRate):
     return updateWeights, updateC
 
 
-def scaleData(X):
+def scaleData(input):
+    # work on a copy
+    X = input.copy()
     # Get Min and max values in input array
     if len(X.shape) == 1:
         ##Single Value Array as used in Y values

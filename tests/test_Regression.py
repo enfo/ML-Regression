@@ -97,3 +97,20 @@ def test_CompareToSklear():
     print(weigths)
 
     assert acc_score == approx(scoreSKLearn, 2.0)
+
+
+def test_CompareScalerToSklear():
+    from sklearn.preprocessing import MinMaxScaler
+
+    dimensions = 2
+    numberOfSamples = 100
+    learningRate = 0.1
+    iterations = 10000
+
+    X, Y = ml.getLogisticRegressionDemoData(numberOfSamples, dimensions)
+    XscaledOwn = ml.scaleData(X)
+
+    scaler = MinMaxScaler()
+    xSKLearn = scaler.fit_transform(X)
+
+    assert np.allclose(XscaledOwn, xSKLearn)
