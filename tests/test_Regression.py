@@ -104,8 +104,6 @@ def test_CompareScalerToSklear():
 
     dimensions = 2
     numberOfSamples = 100
-    learningRate = 0.1
-    iterations = 10000
 
     X, Y = ml.getLogisticRegressionDemoData(numberOfSamples, dimensions)
     XscaledOwn = ml.scaleData(X)
@@ -114,3 +112,34 @@ def test_CompareScalerToSklear():
     xSKLearn = scaler.fit_transform(X)
 
     assert np.allclose(XscaledOwn, xSKLearn)
+
+
+def test_CompareToSklernSplit():
+    from sklearn.model_selection import train_test_split
+
+    dimensions = 2
+    numberOfSamples = 100
+    learningRate = 0.1
+    iterations = 10000
+
+    X, Y = ml.getLogisticRegressionDemoData(numberOfSamples, dimensions)
+    Xscaled = ml.scaleData(X)
+    Yscaled = ml.scaleData(Y)
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        Xscaled, Yscaled, test_size=0.33
+    )
+
+    weigths, c = ml.runLogisticRegression(X_train, y_train, learningRate, iterations)
+
+    yPredicted = predictData(X_test, weigths, c)
+    acc_score = accuracy_score(y_test, yPredicted, normalize=True)
+
+    reg = LogisticRegression().fit(X_train, y_train)
+    scoreSKLearn = reg.score(X_test, y_test)
+
+    print(reg.coef_)
+    print(reg.intercept_)
+    print(weigths)
+
+    assert acc_score >= (scoreSKLearn - 0.03)
