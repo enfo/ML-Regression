@@ -96,7 +96,7 @@ def test_CompareToSklear():
     print(reg.intercept_)
     print(weigths)
 
-    assert acc_score == approx(scoreSKLearn, 2.0)
+    assert acc_score == approx(scoreSKLearn, 0.2)
 
 
 def test_CompareScalerToSklear():
